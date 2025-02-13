@@ -1,4 +1,5 @@
 const { CLIEngine } = require('@commitlint/cli');
+const fs = require('fs');
 const path = require('path');
 
 const lintCommits = () => {
@@ -7,9 +8,12 @@ const lintCommits = () => {
         config: path.resolve(__dirname, 'commitlint.config.js')
     });
 
-    // This assumes commit messages are passed in as an argument
-    const messages = process.argv.slice(2);
-    const results = cli.executeOnFiles(messages);
+    // Read commit messages from a file instead of process.argv
+    const messages = fs.readFileSync(process.argv[2], 'utf-8')
+        .split('\n')
+        .filter(Boolean); // Remove any empty lines
+
+    const results = cli.executeOnText(messages.join('\n')); // Use executeOnText
 
     if (results.errorCount > 0) {
         console.error('Commitlint errors found!');

@@ -1,26 +1,22 @@
-const { lint } = require('@commitlint/lint');
-const load = require('@commitlint/load');
+const { CLIEngine } = require('@commitlint/cli');
 const path = require('path');
 
-const lintCommits = async () => {
+const lintCommits = () => {
     console.log("Checking commit messages...");
-    const config = await load({
-        extends: ['@commitlint/config-conventional']
+    const cli = new CLIEngine({
+        config: path.resolve(__dirname, 'commitlint.config.js')
     });
 
     // This assumes commit messages are passed in as an argument
     const messages = process.argv.slice(2);
+    const results = cli.executeOnFiles(messages);
 
-    for (const message of messages) {
-        const result = await lint(message, config.rules);
-        if (result.errors.length > 0) {
-            console.error('Commitlint errors found!');
-            console.error(result.errors);
-            process.exit(1);
-        }
+    if (results.errorCount > 0) {
+        console.error('Commitlint errors found!');
+        process.exit(1);
+    } else {
+        console.log('Commitlint passed!');
     }
-
-    console.log('Commitlint passed!');
 };
 
 module.exports = lintCommits;

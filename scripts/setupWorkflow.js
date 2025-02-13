@@ -14,6 +14,12 @@ if (!fs.existsSync(workflowDestDir)) {
 fs.readdirSync(workflowSrcDir).forEach(file => {
   const srcFile = path.join(workflowSrcDir, file);
   const destFile = path.join(workflowDestDir, file);
-  fs.copyFileSync(srcFile, destFile);
-  console.log(`Copied workflow file: ${file}`);
+  
+  // Check if file exists in destination, and if not, copy it
+  if (!fs.existsSync(destFile)) {
+    fs.copyFileSync(srcFile, destFile);
+    console.log(`Copied workflow file: ${file}`);
+  } else {
+    console.log(`Workflow file already exists: ${file}`);
+  }
 });

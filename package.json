@@ -28,7 +28,7 @@
     "url": "https://github.com/Abhishek-Raskar-Idexcel/commit-convention-check/issues"
   },
   "homepage": "https://github.com/Abhishek-Raskar-Idexcel/commit-convention-check#readme",
-  "devDependencies": {
+  "dependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1"
   }

@@ -1,25 +1,28 @@
 const fs = require('fs');
 const path = require('path');
 
-// Paths for the source (in the package) and destination (in the user's repo)
-const workflowSrcDir = path.resolve(__dirname, '../.github/workflows'); // Path to workflows in your package
-const workflowDestDir = path.resolve(process.cwd(), '.github/workflows'); // Path to workflows in the user's repo
+// Source: Location in the package itself
+const workflowSrcDir = path.resolve(__dirname, '../.github/workflows');
 
-// Create the destination directory if it doesn't exist
+// Destination: Force it to be at the root of the user's project
+const workflowDestDir = path.resolve(process.cwd(), '../../.github/workflows');
+
+// Ensure the destination directory exists
 if (!fs.existsSync(workflowDestDir)) {
   fs.mkdirSync(workflowDestDir, { recursive: true });
+  console.log(`Created directory: ${workflowDestDir}`);
 }
 
-// Copy each workflow file from the package to the user's repository
+// Copy workflow files from the package to the user's project root
 fs.readdirSync(workflowSrcDir).forEach(file => {
   const srcFile = path.join(workflowSrcDir, file);
   const destFile = path.join(workflowDestDir, file);
-  
-  // Check if file exists in destination, and if not, copy it
+
+  // Check if the file already exists at the destination
   if (!fs.existsSync(destFile)) {
     fs.copyFileSync(srcFile, destFile);
     console.log(`Copied workflow file: ${file}`);
   } else {
-    console.log(`Workflow file already exists: ${file}`);
+    console.log(`Workflow file already exists and was not overwritten: ${file}`);
   }
 });

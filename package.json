@@ -19,7 +19,8 @@
   "files": [
     "index.js",
     "commitlint.config.js",
-    "README.md"
+    "README.md",
+    ".github"
   ],
   "license": "ISC",
   "bugs": {

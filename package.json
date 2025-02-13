@@ -1,7 +1,6 @@
 {
-  "name": "commit-convention-check",
+  "name": "commit-convention-package",
   "version": "1.0.2",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,8 +9,18 @@
     "type": "git",
     "url": "git+https://github.com/Abhishek-Raskar-Idexcel/commit-convention-check.git"
   },
-  "keywords": [],
-  "author": "",
+  "description": "A GitHub Action for checking commit messages with commitlint",
+  "author": "Abhishek Raskar",
+  "keywords": [
+    "commitlint",
+    "github-action",
+    "conventional-commits"
+  ],
+  "files": [
+    "index.js",
+    "commitlint.config.js",
+    "README.md"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Abhishek-Raskar-Idexcel/commit-convention-check/issues"

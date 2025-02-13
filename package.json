@@ -1,6 +1,6 @@
 {
   "name": "commit-convention-package",
-  "version": "1.0.13",
+  "version": "1.0.12",
   "main": "index.js",
   "scripts": {
     "postinstall": "node ./scripts/setupWorkflow.js"
@@ -28,7 +28,7 @@
     "url": "https://github.com/Abhishek-Raskar-Idexcel/commit-convention-check/issues"
   },
   "homepage": "https://github.com/Abhishek-Raskar-Idexcel/commit-convention-check#readme",
-  "dependencies": {
+  "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1"
   }

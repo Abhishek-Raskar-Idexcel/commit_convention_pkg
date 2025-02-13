@@ -1,0 +1,30 @@
+name: PR Commit Message Linting
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Get Commit Messages
+        run: |
+          git fetch --unshallow || true
+          git log --format='%s' origin/${{ github.event.pull_request.head.ref }} ^origin/${{ github.event.pull_request.base.ref }} > commit-messages.txt
+
+      - name: Run Commitlint on Commit Messages
+        run: |
+          npx commitlint < commit-messages.txt

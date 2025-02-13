@@ -20,7 +20,8 @@
     "index.js",
     "commitlint.config.js",
     "README.md",
-    ".github"
+    ".github",
+    "scripts"
   ],
   "license": "ISC",
   "bugs": {

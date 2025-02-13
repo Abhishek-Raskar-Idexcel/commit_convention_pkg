@@ -6,10 +6,10 @@ const commitlintConfigSrc = path.resolve(__dirname, '../commitlint.config.js');
 const workflowSrcDir = path.resolve(__dirname, '../.github/workflows');
 
 // Destination: Ensure it's at the root of the user's repository (outside of node_modules)
-const commitlintConfigDest = path.resolve(process.cwd(), 'commitlint.config.js');
-const workflowDestDir = path.resolve(process.cwd(), '.github/workflows');
+const commitlintConfigDest = path.resolve(process.cwd(), '../../commitlint.config.js');
+const workflowDestDir = path.resolve(process.cwd(), '../../.github/workflows');
 
-// Ensure the destination directory for workflows exists
+// Ensure the destination directory for workflows exists (in the root of the project)
 if (!fs.existsSync(workflowDestDir)) {
   fs.mkdirSync(workflowDestDir, { recursive: true });
   console.log(`Created directory: ${workflowDestDir}`);

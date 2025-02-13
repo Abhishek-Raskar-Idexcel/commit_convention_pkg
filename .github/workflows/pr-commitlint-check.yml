@@ -27,4 +27,4 @@ jobs:
 
       - name: Run Commitlint on Commit Messages
         run: |
-         cat commit-messages.txt | npx commitlint
+          npx commitlint < commit-messages.txt
